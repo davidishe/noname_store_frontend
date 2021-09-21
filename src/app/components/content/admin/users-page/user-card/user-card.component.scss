@@ -1,0 +1,21 @@
+.container {
+  // mat-btn-small style
+
+  .mat-button {
+    background-color: rgb(29, 29, 29);
+    min-width: 8.5rem;
+    margin-right: 1rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    z-index: 2;
+    left: 0rem;
+    border-radius: 0px;
+
+    i {
+      text-align: left;
+      top: -1px;
+      position: relative;
+    }
+  }
+}

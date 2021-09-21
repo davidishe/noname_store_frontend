@@ -1,0 +1,60 @@
+<mat-accordion class="example-headers-align" style="margin-right: 20px;" multi>
+
+
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Оплатить онлайн
+      </mat-panel-title>
+      <mat-panel-description style="display: none;">
+        <!-- Inform the date you wish to travel -->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p *ngIf="basket.deliveryMethodId !== 4">
+      Оплатите на сайте онлайн - и мы привезем вам продукт быстро и надежно
+    </p>
+    <p *ngIf="basket.deliveryMethodId === 4">
+      Оплатите товар на сайте онлайн и получите его в нашем магазине
+    </p>
+    <div class="mat-button-wrapper">
+      <button class="mat-button" (click)="createOrder(basket, 'paymentOnline')">
+        Оплатить онлайн
+      </button>
+    </div>
+    <!-- 
+    <mat-action-row>
+    </mat-action-row> -->
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="basket.deliveryMethodId === 4">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Оплатить наличными
+      </mat-panel-title>
+      <mat-panel-description style="display: none;">
+        <!-- Inform the date you wish to travel -->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p *ngIf="basket.deliveryMethodId === 4">
+      Вы можете оплатить товар при его получении в магазине
+    </p>
+    <p *ngIf="basket.deliveryMethodId !== 4">
+      Оплата наличными принимается только в наших магазинах.
+      Оплата на текущий момент не доступна, так как получение товара происходит вне магазина.
+      Изменить способ доставки можно <b>здесь</b>
+    </p>
+    <div class="mat-button-wrapper pay-cash-wrapper">
+      <button class="mat-button" (click)="createOrder(basket, 'paymentCash')"
+        [disabled]="basket.deliveryMethodId !== 4">
+        Оплатить наличными
+      </button>
+      <button class="mat-button" (click)="moveToStep(0)" *ngIf="basket.deliveryMethodId !== 4">
+        Сменить способ доставки
+      </button>
+    </div>
+
+
+  </mat-expansion-panel>
+
+
+</mat-accordion>

@@ -1,0 +1,26 @@
+<div class="basket-totals-wrapper">
+
+  <div class="totals" *ngIf="(basketTotals$ | async) as totals">
+    <div class="info">Вы выбрали товаров на общую сумму
+      <br>
+      <b>{{totals.subtotal | currency : 'RUB' : 'symbol-narrow' : '0.0-2'}}</b>
+    </div>
+    <div *ngIf="totals.shiping" class="info">Стоимость доставки составляет
+      <br>
+      <b>{{totals.shiping | currency : 'RUB' : 'symbol-narrow' : '0.0-2' }}</b>
+    </div>
+
+    <div *ngIf="!totals.shiping" class="info">Стоимость доставки составляет
+      <br>
+      <b>бесплатно</b>
+    </div>
+    <div class="info">Общая стоимость заказа составляет
+      <br>
+      <b>{{totals.total | currency : 'RUB' : 'symbol-narrow' : '0.0-2' }}</b>
+    </div>
+  </div>
+
+
+
+
+</div>

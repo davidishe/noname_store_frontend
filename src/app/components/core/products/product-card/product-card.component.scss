@@ -1,0 +1,35 @@
+.order-product-card {
+  // background-color: rgb(216, 209, 209);
+  padding-top: 20px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 20px;
+
+  .img-wrapper {
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+
+    img {
+      max-height: 150px;
+    }
+  }
+
+  .order-product-card-content {
+    margin-left: 20px;
+    margin-bottom: 5px;
+
+    p {
+      margin-top: 0px;
+    }
+
+    .product-name {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}

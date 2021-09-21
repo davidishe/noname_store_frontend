@@ -1,0 +1,104 @@
+<app-layer *ngIf="(status$ | async)"></app-layer>
+<mat-progress-bar [ngStyle]="{'position':'absolute', 'top': '0px', 'z-index': '2001', 'height': '10px'}"
+  *ngIf="(status$ | async)" mode="indeterminate">
+</mat-progress-bar>
+<div class="mat-toolbar-wrapper">
+  <mat-toolbar class="mat-toolbar">
+    <mat-toolbar-row class="mat-toolbar-row ">
+
+      <span class="menu-spacer"></span>
+      <div class="nav-items-wrapper">
+        <div class="nav-items">
+
+          <div class="item-wrapper item-wrapper-menu">
+            <a mat-button routerLinkActive="active-menu" (click)="this.sideNavService.toggle()">
+              <i class="material-icons" *ngIf="sideNavService.opened">
+                menu_open
+              </i>
+              <i class="material-icons" *ngIf="!sideNavService.opened">
+                menu
+              </i>
+              <span class="menu-text">Меню</span>
+            </a>
+          </div>
+
+          <!-- basket.items.length !== 0) -->
+          <div class="item-wrapper" style="padding-right: 30px">
+            <a class="item-wrapper-cart" mat-button routerLinkActive="active-menu" *ngIf="(basket$ | async ) as basket"
+              [routerLink]=" ['/basket']" [routerLinkActiveOptions]="{exact: true}" matBadge="{{basket.items.length}}"
+              matBadgePosition="after" matBadgeColor="accent">
+              <i class="material-icons"> local_mall </i>
+              <span class="">Покупки</span>
+            </a>
+
+            <a *ngIf="!(currentUser$ | async)" class="item-wrapper-identity" mat-button routerLinkActive="active-menu"
+              [routerLink]=" ['/account']">
+              <i class="material-icons"> account_circle </i>
+              <span class="">Войти</span>
+            </a>
+
+            <a *ngIf="(currentUser$ | async)" [matMenuTriggerFor]="matMenuUser" class="item-wrapper-identity" mat-button
+              style="width: 195.16px;">
+              <span class="menu-text">
+                Привет,
+              </span> <span
+                style="font-weight: bold; bottom: 1px; position: relative;">{{(currentUser$ | async).displayName}}
+              </span>
+              <i class="material-icons"> arrow_drop_down </i>
+            </a>
+
+            <!-- общее меню -->
+            <mat-menu class=" mat-menu mat-menu-user" #matMenuUser="matMenu" xPosition="before">
+              <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/config']" style="min-width: 170px;">
+                <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">face</mat-icon>
+                Профиль
+              </button>
+              <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/orders']" style="min-width: 170px;">
+                <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">local_shipping</mat-icon>
+                Заказы
+              </button>
+              <button mat-menu-item routerLinkActive="active-menu" style="min-width: 170px;"
+                [matMenuTriggerFor]="matMenuAdmin">
+                <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">supervised_user_circle</mat-icon>
+                Администратор
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">exit_to_app</mat-icon>
+                Выйти
+              </button>
+            </mat-menu>
+            <!-- завершение общее меню -->
+
+            <!-- меню для администратора -->
+            <mat-menu class="mat-menu" #matMenuAdmin="matMenu" xPosition="before">
+              <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/admin/products']">
+                Список продуктов
+              </button>
+              <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/config']">
+                Настройки продуктов
+              </button>
+              <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/login']"
+                [routerLinkActiveOptions]="{exact: true}" (click)="this.sideNavService.toggle()">
+                Авторизация
+              </button>
+              <button mat-menu-item>
+                Список пользователей
+              </button>
+            </mat-menu>
+            <!-- завершение меню для администратора -->
+
+
+          </div>
+
+
+
+
+        </div>
+
+
+      </div>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

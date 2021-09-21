@@ -1,0 +1,98 @@
+<app-layer *ngIf="(status$ | async)"></app-layer>
+<mat-progress-bar [ngStyle]="{'position':'absolute', 'top': '0px', 'z-index': '2001', 'height': '10px'}"
+  *ngIf="(status$ | async)" mode="indeterminate">
+</mat-progress-bar>
+<div class="nav-menu-wrapper">
+  <div class="nav-menu-items">
+    <div class="item menu-item" style="border-color: turquoise !important; z-index: 11111;">
+      <a mat-button routerLinkActive="active-menu" (click)="this.sideNavService.toggle()">
+        <i class="material-icons" *ngIf="sideNavService.opened" style="margin-right: 5px;">
+          menu_open
+        </i>
+        <i class="material-icons" *ngIf="!sideNavService.opened" style="margin-right: 5px;">
+          menu
+        </i>
+        <span class="hide-text">Меню</span>
+      </a>
+    </div>
+
+
+    <div class="right-side-items">
+
+      <div class="item" [routerLink]=" ['/basket']">
+        <a mat-button routerLinkActive="active-menu" *ngIf="(basket$ | async ) as basket"
+          [routerLinkActiveOptions]="{exact: true}" matBadge="{{basket.items.length}}" matBadgePosition="after"
+          matBadgeColor="accent">
+          <i class="material-icons" style="margin-right: 5px;"> local_mall </i>
+          <span class="">Покупки</span>
+        </a>
+      </div>
+
+      <div class="item">
+        <a *ngIf="!(currentUser$ | async)" mat-button routerLinkActive="active-menu" [routerLink]=" ['/account']">
+          <i class="material-icons" style="margin-right: 5px;"> account_circle </i>
+          <span class="">Войти</span>
+        </a>
+      </div>
+
+      <!-- TODO: when clicck hide! -->
+      <!-- [matMenuTriggerFor]="matMenuUser" -->
+      <div id="userinfo" (click)="scrollMenuVisibilitty = !scrollMenuVisibilitty" class="identity">
+        <a *ngIf="(currentUser$ | async)" class="item item-identity" mat-button>
+          <span class="hide-text identity">
+            Привет,
+          </span>
+          <span style="font-weight: bold; position: relative;" class="identity">
+            {{(currentUser$ | async).displayName}}
+          </span>
+          <i class="material-icons identity"> arrow_drop_down </i>
+        </a>
+      </div>
+      <app-scroll-menu [ngClass]="{'hidden': scrollMenuVisibilitty}"></app-scroll-menu>
+
+    </div>
+
+
+
+
+
+    <!-- общее меню -->
+    <!-- <mat-menu class="mat-menu mat-menu-user" #matMenuUser="matMenu" xPosition="before" style="display: none;">
+      <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/config']">
+        <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">face</mat-icon>
+        Профиль
+      </button>
+      <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/orders']">
+        <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">local_shipping</mat-icon>
+        Мои покупки
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">exit_to_app</mat-icon>
+        Выйти
+      </button>
+      <mat-divider></mat-divider>
+
+      <div *ngIf="accountService.checkAdminRights()">
+        <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/admin/products']">
+          <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">list</mat-icon>
+          Список продуктов
+        </button>
+        <button mat-menu-item routerLinkActive="active-menu" [routerLink]="['/config']">
+          <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">category</mat-icon>
+          Настройки продуктов
+        </button>
+        <button mat-menu-item>
+          <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">supervised_user_circle</mat-icon>
+          Список пользователей
+        </button>
+      </div>
+    </mat-menu> -->
+    <!-- завершение меню   -->
+
+
+  </div>
+
+
+
+
+</div>

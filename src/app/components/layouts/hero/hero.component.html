@@ -1,0 +1,28 @@
+<app-mat-carousel></app-mat-carousel>
+
+<div class="page-wrapper">
+  <div class="container">
+    <h1 class="title">
+      Наши новинки
+    </h1>
+    <p>
+      Новинки из раздела <a [routerLink]="[ '/shop' ]">Каталог готовых композиций</a>
+    </p>
+
+    <div class="grid-wrapper" *ngIf="products">
+      <div class="grid">
+        <div *ngFor="let product of products; let i=index">
+          <app-product-mat-card [product]="product"></app-product-mat-card>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="!products" class="spinner-wrapper">
+      <mat-spinner>
+
+      </mat-spinner>
+    </div>
+
+  </div>
+</div>

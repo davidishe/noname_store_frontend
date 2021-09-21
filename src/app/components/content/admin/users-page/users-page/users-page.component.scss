@@ -1,0 +1,34 @@
+.container {
+  table {
+    width: 100%;
+
+    .table-row:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  mat-paginator {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+    .invisible-medium-screen {
+      display: none !important;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding-left: 7px;
+    padding-right: 7px;
+    .invisible-small-screen {
+      display: none !important;
+    }
+  }
+}

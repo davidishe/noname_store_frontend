@@ -1,0 +1,181 @@
+<div class="landing-page-wrapper">
+  <div class="landing-content-list">
+    <div class="container">
+
+      <div class="products-control-wrapper">
+        <div class="search">
+          <mat-form-field class="example-full-width" floatLabel="never">
+            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+            <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
+              search
+            </mat-icon>
+            <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()">
+              close
+            </mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="filters-wrapper">
+
+
+        <mat-chip-list aria-label="selection" *ngFor="let type of types">
+          <mat-chip class="types" [class.active]="type.id === shopParams.typeIdSelected" [value]="type.id"
+            (click)="onTypeSelected(type.id)" color="accent">
+            {{type.name}}
+            <mat-icon matChipRemove *ngIf="type.id === shopParams.typeIdSelected" (click)="onTypeSelected(type.id)">
+              cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+
+        <mat-chip-list aria-label="selection" *ngFor="let region of regions">
+          <mat-chip class="regions" [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
+            (click)="onRegionSelected(region.id)">
+            {{region.name}}
+            <mat-icon matChipRemove *ngIf="region.id === shopParams.regionIdSelected"
+              (click)="onRegionSelected(region.id)">
+              cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <div class="mat-btn-wrapper">
+        <button mat-button class="mat-btn" type="button" disabled="false" mat-flat-button color="primary"
+          [routerLink]="['add']">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">
+            add
+          </mat-icon>
+          Добавить
+        </button>
+
+
+        <div class="filters-wrapper-footer">
+          <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onSortSelected(group.value)">
+            <mat-button-toggle value="name" aria-label="Text align left">
+              <mat-icon>
+                sort_by_alpha
+              </mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="priceDesc" aria-label="Text align center">
+              <mat-icon>sort</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="priceAsc" aria-label="Text align right">
+              <mat-icon class="down">sort</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+
+      <div class="mat-elevation-z8">
+        <table mat-table matSort [dataSource]="this.products" class="mat-elevation-z8 mat-table">
+          <ng-container matColumnDef="productImage">
+            <th mat-header-cell *matHeaderCellDef style="display: none;">
+            </th>
+            <td class="table-row" mat-cell *matCellDef="let product">
+
+              <div class="img-wrapper" *ngIf="product.pictureUrl">
+                <img class="img-fluid" src="{{product.pictureUrl}}" (click)="file.click()">
+              </div>
+
+              <div class="img-wrapper" *ngIf="!product.pictureUrl">
+                <div class="spinner-wrapper spinner-wrapper-photo" *ngIf="progress">
+                  <mat-spinner>
+
+                  </mat-spinner>
+                </div>
+                <span class="material-icons img-fluid no-picture-default" [ngClass]="{'no-picture': isNoPicture}"
+                  (click)="file.click()">
+                  publish
+                </span>
+              </div>
+
+              <input type="file" #file placeholder="Выбери файл" (change)="onImageUpload(file.files, product)"
+                style="display: none;" id="file">
+
+            </td>
+
+          </ng-container>
+
+          <ng-container matColumnDef="productTitle">
+            <th mat-header-cell *matHeaderCellDef style="display: none;">
+            </th>
+            <td mat-cell *matCellDef="let product" class="actions-wrapper">
+              <h3>
+                {{product.name}}
+              </h3>
+
+              <div class="info">
+                <span>
+                  {{product.region}}
+                </span>
+                <span>
+                  Осталось на складе: <b>{{product.quantity}}</b>
+                </span>
+              </div>
+              <div class="actions">
+                <button class="actions-items" *ngIf="!product.isSale" (click)="onProductIsSale(product)"
+                  [ngClass]="{'disabled': !product.pictureUrl}">
+                  <span class="material-icons">
+                    add_business
+                  </span>
+                  На витрину
+                </button>
+                <button class="actions-items" *ngIf="product.isSale" (click)="onProductIsSale(product)">
+                  <span class="material-icons">
+                    pan_tool
+                  </span>
+                  Убрать с витрины
+                </button>
+
+                <button class="actions-items" [routerLink]="['add', product.id]">
+                  <span class="material-icons">
+                    edit
+                  </span>
+                  Редактировать
+                </button>
+                <button class="actions-items" (click)="onProductDelete(product.id)">
+                  <span class="material-icons">
+                    delete
+                  </span>
+                  Удалить
+                </button>
+
+              </div>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="productPrice">
+            <th mat-header-cell *matHeaderCellDef style="display: none;">
+            </th>
+
+            <td class="table-row" mat-cell *matCellDef="let product"
+              style="font-size: 16px; font-weight: bold; padding-right: 10px !important;">
+              {{product.price | currency : 'RUB' : 'symbol-narrow' : '0.0-2'}}
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="display: none;">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+      </div>
+
+      <div class="container" style="padding-top: 0px; padding-bottom: 250px;" *ngIf="!products">
+        <div class="spinner-wrapper">
+          <mat-spinner>
+
+          </mat-spinner>
+        </div>
+      </div>
+
+      <div class="mat-paginator-wrapper" [ngClass]="{'invisible': noProducts}">
+        <mat-paginator #paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize"
+          [pageIndex]="shopParams.pageNumber" [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</div>

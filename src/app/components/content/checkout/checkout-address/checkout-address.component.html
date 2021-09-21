@@ -1,0 +1,100 @@
+<app-dadata-address></app-dadata-address>
+
+
+<div [formGroup]="checkoutFormGroup" class="address-wrapper">
+
+  <form formGroupName="addressForm">
+    <button mat-button class="mat-button" type="submit" cdkStepperNext style="left: 125px; width: 140px;"
+      (click)="saveUserAddress();" [disabled]="checkoutFormGroup.get('addressForm').invalid">
+      Далее
+      <mat-icon aria-hidden="false">
+        keyboard_arrow_right
+      </mat-icon>
+    </button>
+
+
+
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always" style="margin-top: 40px;">
+      <mat-label>Имя</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="firstName" placeholder="Василий">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('firstName').touched && checkoutFormGroup.get('addressForm').get('firstName').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('firstName').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
+      <mat-label>Фамилия</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="lastName" placeholder="Цветков">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('lastName').touched && checkoutFormGroup.get('addressForm').get('lastName').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('lastName').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
+      <mat-label>Город</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="city" placeholder="Тюльпанград">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('city').touched && checkoutFormGroup.get('addressForm').get('city').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('city').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
+      <mat-label>Улица</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="street" placeholder="Горшечная">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('street').touched && checkoutFormGroup.get('addressForm').get('street').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('street').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
+      <mat-label>Дом</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="house" placeholder="77">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('house').touched && checkoutFormGroup.get('addressForm').get('house').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('house').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
+      <mat-label>Квартира (Офис)</mat-label>
+      <input class="mat-input" matInput type="text" formControlName="zipCode" placeholder="010200">
+      <mat-hint class="mat-hint">
+        <div class="validator"
+          *ngIf="checkoutFormGroup.get('addressForm').get('zipCode').touched && checkoutFormGroup.get('addressForm').get('zipCode').invalid">
+          <span *ngIf="checkoutFormGroup.get('addressForm').get('zipCode').hasError('required')">
+            Поле должно быть заполнено
+          </span>
+        </div>
+      </mat-hint>
+
+    </mat-form-field>
+  </form>
+
+
+
+</div>

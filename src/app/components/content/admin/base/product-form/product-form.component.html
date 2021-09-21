@@ -1,0 +1,167 @@
+<div class="page-wrapper">
+
+
+  <div class="container" *ngIf="isAdding">
+    <div class="form-add-wrapper">
+      <form class="form-add" [formGroup]="formLandingItems" (keydown.enter)="addProduct()">
+
+
+        <div style="padding-top: 10px; padding-bottom: 10px; z-index: 300; text-align: center;">
+          <h2>
+            Добавление продукта
+          </h2>
+          <p>
+            Вводи данные и нажми кнопку "Сохранить"
+          </p>
+        </div>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Название продукта</mat-label>
+          <input matInput formControlName="inputProductTitle" type="text">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Стоимость продукта</mat-label>
+          <input matInput type="number" formControlName="inputProductPrice">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always" style="box-shadow: none !important;">
+          <mat-label>Тип продукта</mat-label>
+          <mat-select formControlName="inputProductType" style="box-shadow: none !important;">
+            <mat-option [value]="1">Деревья</mat-option>
+            <mat-option [value]="2">Кустарники</mat-option>
+            <mat-option [value]="3">Декоративные</mat-option>
+            <mat-option [value]="4">Мох</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" style="box-shadow: none !important;">
+          <mat-label>Регион</mat-label>
+          <mat-select formControlName="inputProductRegion" style="box-shadow: none !important;">
+            <mat-option value="1">Малая Азия</mat-option>
+            <mat-option value="2">Африка</mat-option>
+            <mat-option value="3">Тропики</mat-option>
+            <mat-option value="4">Северная Америка</mat-option>
+            <mat-option value="5">Индия</mat-option>
+            <mat-option value="6">Китай</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Количество</mat-label>
+          <input matInput type="number" formControlName="inputQuantity">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Описание</mat-label>
+          <textarea name="" cols="30" rows="2" matInput type="text" formControlName="inputDescription"></textarea>
+        </mat-form-field>
+        <br>
+
+        <div class="mat-btn-wrapper" style="min-width: 280px;">
+          <button mat-button class="mat-btn" type="submit" disabled="false" mat-flat-button color="primary"
+            [routerLink]="[ '/admin/products' ]" style="margin-right: 20px;">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              close
+            </mat-icon>
+            Отменить
+          </button>
+          <button mat-button class="mat-btn" type="submit" disabled="false" mat-flat-button color="primary"
+            (click)="addProduct()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              done
+            </mat-icon>
+            Сохранить
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <div class="container" *ngIf="isUpdating">
+    <div class="form-add-wrapper">
+      <form class="form-add" [formGroup]="formLandingItems" (keydown.enter)="onProductUpdate(product)">
+
+        <div style="padding-top: 10px; padding-bottom: 10px; z-index: 300; text-align: center;">
+          <h2>
+            Обновление продукта
+          </h2>
+          <p>
+            Вводи данные и нажми кнопку "Сохранить"
+          </p>
+        </div>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Название продукта</mat-label>
+          <input matInput formControlName="inputProductTitle" type="text">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Стоимость продукта</mat-label>
+          <input matInput type="number" formControlName="inputProductPrice">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always" style="box-shadow: none !important;">
+          <mat-label>Тип продукта</mat-label>
+          <mat-select formControlName="inputProductType" style="box-shadow: none !important;">
+            <mat-option value="1">Деревья</mat-option>
+            <mat-option value="2">Кустарники</mat-option>
+            <mat-option value="3">Декоративные</mat-option>
+            <mat-option value="4">Мох</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" style="box-shadow: none !important;">
+          <mat-label>Регион</mat-label>
+          <mat-select formControlName="inputProductRegion" style="box-shadow: none !important;">
+            <mat-option value="1">Малая Азия</mat-option>
+            <mat-option value="2">Африка</mat-option>
+            <mat-option value="3">Тропики</mat-option>
+            <mat-option value="4">Северная Америка</mat-option>
+            <mat-option value="5">Индия</mat-option>
+            <mat-option value="6">Китай</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Количество</mat-label>
+          <input matInput type="number" formControlName="inputQuantity">
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Описание</mat-label>
+          <textarea name="" cols="30" rows="2" matInput type="text" formControlName="inputDescription"></textarea>
+        </mat-form-field>
+        <br>
+
+        <div class="mat-btn-wrapper" style="min-width: 280px;">
+          <button mat-button class="mat-btn" type="submit" disabled="false" mat-flat-button color="primary"
+            [routerLink]="[ '/admin/products' ]" style="margin-right: 20px !important;">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              close
+            </mat-icon>
+            Отменить
+          </button>
+          <button mat-button class="mat-btn" type="submit" disabled="false" mat-flat-button color="primary"
+            (click)="onProductUpdate(product)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">
+              done
+            </mat-icon>
+            Обновить
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

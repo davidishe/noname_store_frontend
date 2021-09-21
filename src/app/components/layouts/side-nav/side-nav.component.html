@@ -1,0 +1,65 @@
+<mat-sidenav-container class="mat-sidenav-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="sideNavService.opened">
+    <app-bread-crumb></app-bread-crumb>
+    <h1 class="logo" [routerLink]="['/']">Noname store</h1>
+    <div class="phone-wrapper">
+      <a href="tel:+79955094999">
+        <i class="material-icons">
+          local_phone
+        </i>
+        +7 (995) 100-00-00
+      </a>
+    </div>
+
+    <div class="menu">
+
+      <div class="menu-section">
+        <h3>МЕНЮ</h3>
+        <ul>
+          <li class="menu-items" routerLinkActive="active-menu" [routerLink]="['/shop']">
+            <i class="material-icons">storefront</i>
+            <a>Каталог</a>
+          </li>
+          <li class="menu-items">
+            <i class="material-icons">whatshot</i>
+            <a>Новинки</a>
+          </li>
+          <li class="menu-items">
+            <i class="material-icons">star</i>
+            <a>Выбор покупателей</a>
+          </li>
+          <li class="menu-items">
+            <i class="material-icons">timer</i>
+            <a>Акции</a>
+          </li>
+          <li class="menu-items">
+            <i class="material-icons">location_on</i>
+            <a>Контакты</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h3>ОБУЧЕНИЕ</h3>
+        <ul>
+          <li class="menu-items">
+            <i class="material-icons">library_books</i>
+            <a>Статьи</a>
+          <li class="menu-items">
+            <i class="material-icons">people_alt</i>
+            <a>Мастер-классы</a>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <app-mat-button btnText="Обратная связь"> </app-mat-button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
