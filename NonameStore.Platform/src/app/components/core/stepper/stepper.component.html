@@ -1,0 +1,35 @@
+<div class="nav-main">
+  <button class="step" *ngFor="let step of steps; let i = index;" [ngClass]="{'active': selectedIndex === i}"
+    [disabled]="true">
+    <span class="material-icons">
+      {{step.label}}
+    </span>
+    <span class="material-icons">
+      arrow_right_alt
+    </span>
+  </button>
+</div>
+
+<div class="stepper-wrapper">
+  <div class="container">
+    <div class="content">
+
+      <h2>{{stepnames[selectedIndex]}}</h2>
+      <div class="step-navigation-bar">
+        <button class="nav-button" cdkStepperPrevious *ngIf="(this.selectedIndex !== 0)" style="padding-left: 10px;">
+          <mat-icon class="material-icons" style="padding-left: 5px; padding-right: 5px;">
+            arrow_back
+          </mat-icon>
+          Назад
+        </button>
+
+      </div>
+      <div [style.display]="selected ? 'block' : 'none'">
+        <ng-container [ngTemplateOutlet]="selected.content">
+        </ng-container>
+      </div>
+
+
+    </div>
+  </div>
+</div>

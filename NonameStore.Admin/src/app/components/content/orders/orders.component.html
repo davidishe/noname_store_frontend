@@ -1,0 +1,31 @@
+<div class="orders-wrapper" *ngIf="orders">
+  <div *ngFor="let order of orders" style="margin-top: 10rem;">
+    <div class="order-card">
+      <div class="order-card-header">
+        <mat-chip-list aria-label="selection">
+          <mat-chip class="types" *ngIf="order.status !== 'Заказ ожидает оплаты'">
+            {{order.status }}
+          </mat-chip>
+          <mat-chip class="types" style="background-color: #FF4081;" *ngIf="order.status === 'Заказ ожидает оплаты'">
+            {{order.status }}
+          </mat-chip>
+        </mat-chip-list>
+        <p>Заказ сделан <b>{{order.orderDate | date }}</b></p>
+        <p>Вы заплатили
+          <b>{{order.subtotal + order.deliveryPrice | currency : 'RUB' : 'symbol-narrow' : '.0-2'}}</b>
+        </p>
+      </div>
+      <mat-divider></mat-divider>
+
+      <app-product-card [basketItems]="order.orderItems"></app-product-card>
+    </div>
+  </div>
+</div>
+
+<div class="nocontent-wrapper" *ngIf="orders">
+  <div class="nocontent">
+    <div class="title">Вы пока ничего не заказывали</div>
+    <app-mat-button btnText="Продолжить покупки" [routerLink]="[ '/shop' ]">
+    </app-mat-button>
+  </div>
+</div>

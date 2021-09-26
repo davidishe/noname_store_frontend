@@ -1,0 +1,39 @@
+<div class="carousel-elements">
+  <!-- carousel start -->
+  <div class="carousel-wrapper" id="container">
+    <div ng2-carouselamos class="carousel" [items]="items" [width]="width" [$prev]="prev" [$next]="next" [$item]="item"
+      style="width: 100%;">
+      <br><br><br>
+    </div>
+
+    <ng-template #prev>
+      <a id="left">
+        <i class="material-icons navigator">keyboard_arrow_left</i>
+      </a>
+    </ng-template>
+
+    <ng-template #next>
+      <a id="right">
+        <i class="material-icons navigator">keyboard_arrow_right</i>
+      </a>
+    </ng-template>
+
+
+    <ng-template #item let-item let-i="index">
+      <mat-card class="items">
+        <strong class="card-title">
+          {{ item.title }}
+        </strong>
+        <div class="img-wrapper">
+          <img draggable="false" src="./assets/headerpictures/{{ item.path }}" alt="продукты">
+        </div>
+        <a mat-button class="mat-btn-item">
+          <i class="material-icons">
+            arrow_right_alt
+          </i>
+        </a>
+      </mat-card>
+    </ng-template>
+  </div>
+  <!-- carousel end -->
+</div>

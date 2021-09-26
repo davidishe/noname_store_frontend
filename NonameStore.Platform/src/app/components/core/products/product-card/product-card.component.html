@@ -1,0 +1,16 @@
+<div *ngFor="let item of basketItems" class="order-product-card">
+  <div class="img-wrapper">
+    <img src="{{item.pictureUrl}}">
+  </div>
+
+  <div class="order-product-card-content">
+    <p class="product-name">{{ item.name }}</p>
+    <p style="font-weight: bold;">{{ item.price | currency : 'RUB' : 'symbol-narrow' }}</p>
+    <p>Вы купили этого товара на сумму <b>
+        {{item.price * item.quantity | currency : 'RUB' : 'symbol-narrow' }}</b></p>
+    <p><b>Состав композиции</b> Растение + кашпо </p>
+    <p><b>Цвет кашпо</b> Серый</p>
+    <a [routerLink]="[ '/shop/', item.guId]">Подробнее</a>
+
+  </div>
+</div>

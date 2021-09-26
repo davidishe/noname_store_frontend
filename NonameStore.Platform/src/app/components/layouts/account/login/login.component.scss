@@ -1,0 +1,93 @@
+form {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  font-size: 15px;
+
+  .label {
+    color: black;
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .mat-form-field-wrapper {
+      width: 100%;
+    }
+
+    .mat-input-login {
+      top: -3px;
+      position: relative;
+    }
+  }
+
+  .mat-hint {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // background-color: rgb(216, 203, 203);
+
+    .validator {
+      color: var(--main-theme-color-error);
+      right: 12px;
+      position: relative;
+    }
+  }
+
+  .mat-btn {
+    cursor: pointer;
+    line-height: 3.7rem;
+    font-size: 14px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: black;
+    color: white;
+    padding-right: 25px;
+    padding-left: 36px;
+    border-radius: 30px;
+    width: 100%;
+    justify-content: space-between;
+
+    .material-icons {
+      font-size: 22px !important;
+      top: 0px !important;
+      position: relative;
+      margin-right: 5px;
+    }
+
+    .google-logo {
+      fill: white;
+      stroke: white;
+      height: 20px;
+      width: 20px;
+      position: relative;
+      margin-right: 5px;
+      top: -1px;
+    }
+  }
+
+  .mat-btn:hover {
+    background-color: #202020;
+    color: white;
+  }
+}
+
+.mat-btn-login.mat-button-disabled {
+  background-color: darkgray !important;
+}
+
+.login-info {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  color: #202020;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.login-info:hover {
+  color: black;
+  text-decoration: underline;
+}

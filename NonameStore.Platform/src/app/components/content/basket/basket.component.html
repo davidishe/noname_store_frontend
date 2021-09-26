@@ -1,0 +1,100 @@
+<div class="basket-wrapper">
+  <app-page-header></app-page-header>
+
+  <div *ngIf="(basket$ | async) === null">
+    <p>
+      Ничего нет в корзине
+    </p>
+  </div>
+
+  <div class="app-order-total-wrapper" *ngIf="(basket$ | async) !== null">
+    <app-order-total></app-order-total>
+  </div>
+
+  <div class="mat-button-wrapper" *ngIf="(basket$ | async) !== null">
+    <a mat-button class="mat-button" [routerLink]="['/checkout']">
+      Оформить
+      <mat-icon class="material-icons">
+        forward
+      </mat-icon>
+    </a>
+  </div>
+
+  <div class="grid-wrapper">
+    <div class="grid">
+      <div class="basket-list-wrapper" *ngIf="(basket$ | async) as basket">
+        <div *ngFor="let item of basket.items">
+          <div class="basket-list">
+            <div class="product-card">
+              <div class="img-wrapper">
+                <img class="basket-card-img" src="{{item.pictureUrl}}">
+              </div>
+
+              <div class="card-content">
+                <h4 class="card-content-name">
+                  {{ item.name }}
+                </h4>
+
+                <div class="card-content-price-wrapper">
+                  <div class="card-content-price">
+                    {{ item.price | currency : 'RUB' : 'symbol-narrow' }}
+                  </div>
+                </div>
+
+
+                <div class="product-card-summary">
+                  Вы выбрали этого товара на <b>
+                    {{item.price * item.quantity | currency : 'RUB' : 'symbol-narrow' }}</b>
+                </div>
+
+                <div class="card-content-description">
+                  <p><b>Состав композиции</b> Растение + кашпо </p>
+                  <p><b>Высота композиции</b> 140 см</p>
+                  <p><b>Родина растения</b> Тропики Африки</p>
+                  <p><b>Цвет кашпо</b> Серый</p>
+                </div>
+
+
+                <div class="product-card-footer-wrapper">
+                  <div class="product-card-footer">
+                    <div class="quantity-wrapper">
+                      <i class="material-icons" (click)="decrementItemQuantity(item)">
+                        keyboard_arrow_down
+                      </i>
+                      <a class="quantity">{{item.quantity}}</a>
+                      <i class="material-icons" (click)="incrementItemQuantity(item)">
+                        keyboard_arrow_up
+                      </i>
+                    </div>
+
+                    <div class="delete-button-wrapper">
+                      <a mat-button class="delete-button" (click)="removeItemFromBasket(item)">
+                        <i class="material-icons">
+                          delete
+                        </i>
+                        Удалить из корзины
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+
+    </div>
+
+
+
+
+  </div>
+</div>

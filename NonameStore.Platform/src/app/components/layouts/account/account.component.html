@@ -1,0 +1,25 @@
+<div class="authorize-page-wrapper">
+  <div class=" login-page-wrapper">
+
+    <div class="container">
+      <mat-tab-group class="mat-tab-group" id="mat-tab" [selectedIndex]="(tabIndex$ | async)"
+        (selectedIndexChange)="displayService.setIndex($event)">
+        <mat-tab class="mat-tab" label="Вход">
+          <p class="login-description" *ngIf="!this.code">Значимость этих проблем настолько очевидна, что
+            высокотехнологичная концепция
+            общественной системы
+            способствует повышению качества дальнейших направлений развития.</p>
+          <app-login></app-login>
+        </mat-tab>
+
+        <!-- регистрация -->
+        <mat-tab class="mat-tab" id="mat-tab" label="Регистрация" style="width: 100% !important;">
+          <p class=" login-description" *ngIf="!this.code">Не вызывает сомнений, что курс на
+            социально-ориентированный национальный проект создаёт предпосылки качественно новых шагов.</p>
+          <app-register></app-register>
+        </mat-tab>
+        <!-- завершение регистрации -->
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<mat-card *ngIf="product">
+  <div class="card-header-wrapper">
+    <div class="card-header">
+      <h4 class="card-name">{{ product.name }}</h4>
+      <div class="price">{{ product.price | currency : 'RUB' : 'symbol-narrow' : '0.0-2'}}</div>
+    </div>
+    <div class="header-product-type">
+      <p><i class="material-icons">eco</i>{{product.type}}</p>
+      <p><i style="color: #FF4081;" class="material-icons">place</i>{{product.region}}</p>
+    </div>
+  </div>
+  <br>
+  <div class="img-wrapper"><img src="{{product.pictureUrl}}" alt="цветы"></div>
+  <br>
+  <div class="card-footer">
+
+    <a mat-button class="mat-button" (click)="addItemToBasket(product)" *ngIf="!product.isSelected">
+      <mat-icon class="material-icons">
+        work
+      </mat-icon>
+      В корзину
+    </a>
+
+    <a mat-button class="mat-button" (click)="removeItemFromBasket(product)" *ngIf="product.isSelected"
+      style="background-color: #FF4081;">
+      <mat-icon class="material-icons">
+        done
+      </mat-icon>
+      Добавлено
+    </a>
+
+
+    <a mat-button class="mat-button" routerLink="/shop/{{product.guId}}">
+      <mat-icon class="material-icons">
+        transit_enterexit
+      </mat-icon>
+      Детали
+    </a>
+  </div>
+
+</mat-card>

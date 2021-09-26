@@ -1,0 +1,96 @@
+<div class="page-wrapper">
+
+  <div class="container" *ngIf="products">
+
+    <div class="title-wrapper">
+      <app-page-header></app-page-header>
+      <p>
+        Значимость этих проблем настолько очевидна, что высокотехнологичная концепция общественной системы способствует
+        повышению качества дальнейших направлений развития.
+      </p>
+    </div>
+
+    <div class="shop-header">
+      <div class="products-control-wrapper">
+        <div class="search">
+          <mat-form-field class="example-full-width" floatLabel="never">
+            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+            <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
+              search
+            </mat-icon>
+            <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()">
+              close
+            </mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
+
+      <div class="filters-wrapper">
+        <mat-chip-list aria-label="selection" *ngFor="let type of types">
+          <mat-chip class="types" [class.active]="type.id === shopParams.typeIdSelected" [value]="type.id"
+            (click)="onTypeSelected(type.id)" color="accent">
+            {{type.name}}
+            <mat-icon matChipRemove *ngIf="type.id === shopParams.typeIdSelected" (click)="onTypeSelected(type.id)">
+              cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+
+        <mat-chip-list aria-label="selection" *ngFor="let region of regions">
+          <mat-chip class="regions" [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
+            (click)="onRegionSelected(region.id)">
+            {{region.name}}
+            <mat-icon matChipRemove *ngIf="region.id === shopParams.regionIdSelected"
+              (click)="onRegionSelected(region.id)">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+
+      <div class="filters-wrapper-footer">
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onSortSelected(group.value)">
+          <mat-button-toggle value="name" aria-label="Text align left">
+            <mat-icon>
+              sort_by_alpha
+            </mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="priceDesc" aria-label="Text align center">
+            <mat-icon>sort</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="priceAsc" aria-label="Text align right">
+            <mat-icon class="down">sort</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+    </div>
+
+
+    <div class="grid-wrapper">
+      <div class="grid">
+        <div *ngFor="let product of products; let i=index">
+          <app-product-mat-card [product]="product"></app-product-mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mat-paginator-wrapper">
+    <mat-paginator #paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize"
+      [pageIndex]="shopParams.pageNumber" [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </div>
+
+
+  <div class="container" style="background-color: #FFFFFF;">
+    <div *ngIf="!products" class="spinner-wrapper">
+      <mat-spinner>
+
+      </mat-spinner>
+    </div>
+  </div>
+
+
+
+</div>

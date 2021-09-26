@@ -1,0 +1,40 @@
+<div class="checkout-wrapper">
+  <app-page-header *ngIf="!icons[3]"></app-page-header>
+
+  <div class="app-order-total-wrapper">
+    <p style="margin-bottom: 10px;">
+      Номер заказа
+      <br>
+      <b>
+        {{(basket$ | async).orderNumber}}
+      </b>
+    </p>
+
+    <app-order-total></app-order-total>
+  </div>
+
+  <app-stepper [stepnames]="stepnames" [linearModeSelected]="true" #appStepper [nextBtnNames]="nextBtnNames">
+    <!-- <cdk-step [label]="icons[3]">
+      <app-checkout-rbk [stepper]="stepper" [checkoutFormGroup]="checkoutFormGroup" [basket]="(basket$ | async)">
+      </app-checkout-rbk>
+    </cdk-step> -->
+    <cdk-step [label]="icons[0]" [completed]="checkoutFormGroup.get('deliveryForm').valid">
+      <app-checkout-delivery [checkoutFormGroup]="checkoutFormGroup"></app-checkout-delivery>
+    </cdk-step>
+    <cdk-step [label]="icons[1]" [completed]="checkoutFormGroup.get('addressForm').valid"
+      *ngIf="checkoutFormGroup.get('deliveryForm').value.deliveryMethod !== '4'">
+      <app-checkout-address [checkoutFormGroup]="checkoutFormGroup"></app-checkout-address>
+    </cdk-step>
+    <cdk-step [label]="icons[2]">
+      <app-checkout-review *ngIf="(basket$ | async)" [basketItems]="(basket$ | async).items"></app-checkout-review>
+    </cdk-step>
+    <cdk-step [label]="icons[3]">
+      <app-checkout-payment [stepper]="stepper" [checkoutFormGroup]="checkoutFormGroup" [basket]="(basket$ | async)">
+      </app-checkout-payment>
+    </cdk-step>
+    <cdk-step [label]="icons[4]">
+      <app-checkout-succes></app-checkout-succes>
+    </cdk-step>
+  </app-stepper>
+
+</div>

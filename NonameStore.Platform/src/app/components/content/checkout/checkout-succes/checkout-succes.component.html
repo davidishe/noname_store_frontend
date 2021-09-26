@@ -1,0 +1,20 @@
+<div class="orders-wrapper">
+
+  <div *ngIf="order">
+    <div>
+      <div class="order-card">
+        <div class="order-card-header">
+          <p><b> {{order.status }}</b></p>
+          <p>Заказ сделан <b>{{order.orderDate | date }}</b></p>
+          <p>Вы заплатили
+            <b>{{order.subtotal + order.deliveryPrice | currency : 'RUB' : 'symbol-narrow' : '0.0-2'}}</b>
+          </p>
+        </div>
+        <app-product-card [basketItems]="order.orderItems"></app-product-card>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+
+  </div>
+
+</div>

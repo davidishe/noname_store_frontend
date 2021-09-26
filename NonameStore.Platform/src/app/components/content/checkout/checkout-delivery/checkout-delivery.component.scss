@@ -1,0 +1,59 @@
+mat-radio-group {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+
+  mat-radio-button {
+    padding-right: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+    p {
+      margin-bottom: 0px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.mat-button {
+  display: flex;
+  width: 130px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 400;
+  padding-right: 0px;
+  padding-left: 10px;
+  background-color: #202020;
+  vertical-align: middle;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 0px;
+  transition: all 0.2s ease-out;
+  position: absolute;
+  top: 62px;
+
+  mat-icon {
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 15px;
+    position: relative;
+    top: 4px;
+    margin-left: 2px;
+  }
+}
+
+.mat-button:hover {
+  background-color: rgb(5, 5, 31);
+}
+
+.mat-button:disabled,
+.mat-button:disabled:hover {
+  background-color: darkgrey;
+  color: white;
+}

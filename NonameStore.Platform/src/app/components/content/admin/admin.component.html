@@ -1,0 +1,19 @@
+<div class="admin-wrapper">
+  <app-page-header></app-page-header>
+
+  <div class="container">
+    <div class="admin-menu" routerLinkActive="active-menu" [routerLink]="['products']" style="min-width: 170px;">
+      <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">face</mat-icon>
+      Продукты на витрине
+    </div>
+    <div class="admin-menu" routerLinkActive="active-menu" [routerLink]="['/orders']" style="min-width: 170px;">
+      <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">local_shipping</mat-icon>
+      Все заказы
+    </div>
+    <div class="admin-menu" routerLinkActive="active-menu" [routerLink]="['/users']" style="min-width: 170px;">
+      <mat-icon class="material-icons" style="color: rgb(12, 12, 12);">supervised_user_circle</mat-icon>
+      Пользователи
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,63 @@
+button.mat-btn {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  cursor: pointer;
+  line-height: 3rem;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #1a1a1a !important;
+  color: white;
+  text-align: center;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 100px;
+  max-width: 300px;
+  display: inline-block !important;
+  vertical-align: middle;
+  align-items: center;
+
+  .material-icons {
+    position: relative;
+    top: 2px;
+    font-size: 18px;
+  }
+}
+
+button.mat-btn:hover {
+  background-color: black !important;
+  color: white;
+}
+
+.mat-button {
+  display: flex;
+  min-width: 135px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  border-radius: 30px;
+  background-color: #202020;
+  color: white;
+  font-weight: 400;
+  right: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 14px;
+  padding-left: 0px;
+  vertical-align: middle;
+
+  mat-icon {
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 15px;
+    column-rule-color: black;
+    position: relative;
+    top: 3px;
+    margin-left: 0px;
+    margin-right: 2px;
+  }
+}
+
+.mat-button:hover {
+  background-color: rgb(5, 5, 31);
+}

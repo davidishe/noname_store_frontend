@@ -1,0 +1,26 @@
+.mat-menu-content:not(:empty),
+.mat-menu-content,
+.ng-tns-c70-0 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  min-width: 170px !important;
+}
+
+.mat-chip-list-wrapper {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  margin-top: -5px !important;
+  margin-bottom: 0px !important;
+}
+
+mat-chip {
+  margin-right: 10px !important;
+}
+
+@media (max-width: 483px) {
+  .mat-menu-content:not(:empty),
+  .mat-menu-content,
+  .ng-tns-c70-0 {
+    display: none;
+  }
+}

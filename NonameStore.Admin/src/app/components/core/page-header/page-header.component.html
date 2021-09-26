@@ -1,0 +1,8 @@
+<ng-container *ngIf="(breadcrumb$ | async) as breadcrumbs">
+  <div *ngIf="breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length-1].label !== 'Магазин'"
+    class="page-header-wrapper">
+    <h2 class="header-title">
+      {{breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length-1].label}}
+    </h2>
+  </div>
+</ng-container>
